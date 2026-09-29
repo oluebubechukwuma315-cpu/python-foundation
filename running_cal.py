@@ -1,7 +1,6 @@
-
 keeper = 0
 quest = ""
-undo = ["+"]
+undo = []
 
 while True:
     operator = input(f"{quest}").strip().split()
@@ -13,10 +12,9 @@ while True:
     elif len(operator) == 2:
         opera,operand2 = operator
     elif len(operator) == 1:
-        opera = operator
+        opera = operator[0]
     if keeper is list:
         keeper = "".join(keeper)
-    opera = "".join(opera)
     if operand2 is list:
         operand2 = "".join(operand2)
     try:
@@ -48,17 +46,21 @@ while True:
             print(keeper)
         elif opera == "undo":
             if undo :
-                keeper = undo.pop()
-                print(keeper)
-                quest = quest.split()
-                quest.pop()
-                print(quest)
-                quest.pop()
-                print(quest)
-                quest = "".join(quest)
-                continue
+                if len(quest.split()) > 1:
+                    keeper = undo.pop()
+                    print(keeper)
+                    quest = quest.split()
+                
+                    quest.pop()
+                   
+                    quest.pop()
+                    
+                    quest = " ".join(quest)
+                else:
+                    print("can not undo")
+                
             else:
-                "nothing to undo"
+                print("nothing to undo")
                 continue
 
     else:
